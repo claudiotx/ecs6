@@ -12,9 +12,16 @@ module.exports = function(grunt) {
                         "ecm5.js": "src/index.js"
                     }
                 }
+            },
+            watch: {
+                babel: {
+                    files: ['src/**/*.js'],
+                    tasks: ['babel']
+                }
             }
     });
 
-    grunt.loadNpmTasks("grunt-babel")
+    grunt.loadNpmTasks("grunt-babel");
+    grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadTasks("default", ["babel"]);
 }
