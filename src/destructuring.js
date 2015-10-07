@@ -50,7 +50,7 @@
 		return arr;
 	}
 	let [first,second,third,forth] = takeFromAnotherArray();
-	//console.warn(first,second,third,forth);
+	console.warn(first,second,third,forth);
 	//
 
 	// limited scoping using 'let'

@@ -4,22 +4,33 @@ module.exports = function(grunt) {
         grunt.initConfig({
             babel: {
                 options: {
-                    sourceMap: true //maps compiled code errors to the source code error messages
+                    sourceMap: true, //maps compiled code errors to the source code error messages,
+                    optional: ['runtime'] //required for generators
                 },
                 dist: {
                     files: {
                         //"expressplayground/public/javascripts/app.js": "src/index.js"
-                        "ecm5.js": "src/index.js"
+                        "ecm5.js": "src/iterators.js"
                     }
                 }
             },
             watch: {
                 babel: {
-                    files: ['src/**/*.js'],
+                    files: 'src/*.js',
                     tasks: ['babel']
                 }
             }
     });
+
+    grunt.registerTask('es6', 'runs my tasks', function () {
+        var tasks = ['watch'];
+
+        // Use the force option for all tasks declared in the previous line
+        grunt.option('force', true);
+        grunt.task.run(tasks);
+    });
+
+    grunt.option('force', true); //ingore warnings
 
     grunt.loadNpmTasks("grunt-babel");
     grunt.loadNpmTasks("grunt-contrib-watch");

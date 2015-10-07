@@ -1,0 +1,8 @@
+ecs6
+nodemon ecm5.js  --watch ecm5.js
+nodemon -q ecm5.js --watch ecm5.js
+
+
+grunt watch
+
+grunt babel

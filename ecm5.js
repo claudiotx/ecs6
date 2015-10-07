@@ -1,55 +1,110 @@
-// Arrow Functions
-// **********************************************
+/*
+	Generator Iterator - Design Pattern which allows to step through an ordered set of values one at a time by calling .next()
+	Rule 1 - When passing an argument to the generator function, the first .next() arguments will be ignored
+
+ */
 'use strict';
 
-console.info('------------------------'); //for readability when using nodemon
-function asyncAdd(a, b, cb) {
-	var c = a + b;
-	cb(c);
-};
+var _regeneratorRuntime = require('babel-runtime/regenerator')['default'];
 
-// advantage: got rid of curly braces
-asyncAdd(1, 5, function (result) {
-	return console.warn('the sum is', result);
-});
+var _getIterator = require('babel-runtime/core-js/get-iterator')['default'];
 
-asyncAdd(1, 5, function (result) {
-	console.warn('the sum is', result);
-});
+var marked0$0 = [iterator, forOf].map(_regeneratorRuntime.mark);
+console.log('+-----------------------------------------+');
 
-// **********************************************
-// Managing "this"
-function Adder(a, b) {
-	this.a = a;
-	this.b = b;
+function iterator(arg) {
+	var y, z;
+	return _regeneratorRuntime.wrap(function iterator$(context$1$0) {
+		while (1) switch (context$1$0.prev = context$1$0.next) {
+			case 0:
+				context$1$0.next = 2;
+				return arg + 1;
+
+			case 2:
+				context$1$0.t0 = context$1$0.sent;
+				y = 2 * context$1$0.t0;
+				context$1$0.next = 6;
+				return y + 3;
+
+			case 6:
+				z = context$1$0.sent;
+				return context$1$0.abrupt('return', arg + y + z);
+
+			case 8:
+			case 'end':
+				return context$1$0.stop();
+		}
+	}, marked0$0[0], this);
 }
 
-// Add method to Adder object
-Adder.prototype.execute = function (cb) {
-	var sum = this.a + this.b;
-	cb.bind(this, undefined, sum)();
-};
+// initialize
+var it = iterator(1); // (passed 1 as an argument to iterator function)
 
-var add = new Adder(1, 2);
-add.execute(function (error, sum) {
-	var _this = this;
+// start iterator
+var countOutput = it.next(); // return { 2*1 }
+console.log(countOutput);
 
-	if (error) {
-		throw error;
+countOutput = it.next(2); // return { 4+3 } (passed 2 for result of 1st yield)
+console.log(countOutput);
+
+countOutput = it.next(1); // return { 1 + 4 + 1 } (passed 1 for result of 2nd yield)
+console.log(countOutput); // done: true, countOutput:3
+
+/*
+	For...Of iterator pattern
+ */
+console.log('for...of ITERATOR PATTERN');
+function forOf() {
+	return _regeneratorRuntime.wrap(function forOf$(context$1$0) {
+		while (1) switch (context$1$0.prev = context$1$0.next) {
+			case 0:
+				context$1$0.next = 2;
+				return 1;
+
+			case 2:
+				context$1$0.next = 4;
+				return 2;
+
+			case 4:
+				context$1$0.next = 6;
+				return 3;
+
+			case 6:
+				return context$1$0.abrupt('return', 66);
+
+			case 7:
+			case 'end':
+				return context$1$0.stop();
+		}
+	}, marked0$0[1], this);
+}
+
+//ignored by the for of loop
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+	for (var _iterator = _getIterator(forOf()), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+		var v = _step.value;
+
+		console.log(v);
 	}
-	console.log('context is', this.a); //prints OK
+} catch (err) {
+	_didIteratorError = true;
+	_iteratorError = err;
+} finally {
+	try {
+		if (!_iteratorNormalCompletion && _iterator['return']) {
+			_iterator['return']();
+		}
+	} finally {
+		if (_didIteratorError) {
+			throw _iteratorError;
+		}
+	}
+}
 
-	setImmediate(function () {
-		console.log('the sum', sum);
-		console.log('context using function is', this.a, this.b);
-	});
-
-	// no need for var that = this;
-	setImmediate(function () {
-		console.log('the sum', sum);
-		console.log('context using => ', _this.a, _this.b);
-	});
-});
-
-console.info('------------------------');
+console.log('+-----------------------------------------+');
+// return { arg+1 }
 //# sourceMappingURL=ecm5.js.map
