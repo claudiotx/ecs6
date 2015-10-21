@@ -111,14 +111,14 @@ for (var i = 0; i < jsonObject.jobs.length; i++) {
 
 // Phase 1 High Level
 function *iterateJobs(jobs){
-	for (var i = 0; i < jobs.length; i++) {
+	for (var i = 0; i < jobs.length; i++) {      
 		var job = jobs[i];
 		yield *iterateSteps(job.stepTemplates); // pause and call to the other function to perform the lower level iteration
 	}
 }
 // Phase 2 Lower Level
 function *iterateSteps(steps){    
-	for (var i = 0; i < steps.length; i++) {				
+	for (var i = 0; i < steps.length; i++) {			  
 		var step = steps[i];		
 		yield step; // pause and return the step object, it would be yielded		
 	}
@@ -141,6 +141,7 @@ function findWhere(jobs, predicateBoolean){
 			return stepTemplate;
 		}
 		else{
+      console.warn('next')
 			res = it.next();
 		}
 	}

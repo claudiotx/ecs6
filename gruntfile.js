@@ -10,7 +10,7 @@ module.exports = function(grunt) {
                 dist: {
                     files: {
                         //"expressplayground/public/javascripts/app.js": "src/index.js"
-                        "ecm5.js": "src/iterators.js"
+                        "dist/ecm5.js": "src/async_generators1.js"
                     }
                 }
             },
