@@ -1,8 +1,8 @@
-ecs6
-nodemon ecm5.js  --watch ecm5.js
-nodemon -q ecm5.js --watch ecm5.js
-
-
+# Terminal 1
 grunt watch
+#grunt babel
 
-grunt babel
+# Terminal 2
+#nodemon dist/ecm5.js  --watch dist/ecm5.js
+nodemon -q dist/ecm5.js --watch dist/ecm5.js
+

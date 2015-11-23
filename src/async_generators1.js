@@ -13,7 +13,7 @@ function makeAjaxRequest(url,cb){
 	},1000);
 }
 
-// Controls the generator workflow
+// Asyncrhonous Call to a RESTFul Method
 // @uses ECMAScript 6 Promise
 function request(url){
 	return new Promise(function(resolve, reject){
@@ -27,34 +27,37 @@ function bar(a){
 	return a + 'fooooooooooooo';
 }
 
-// FLOW CONTROL FUNCTION
+// FLOW CONTROL LIBRARY
 function async(generator){
-	var it = generator(); // generates the iterator -> doesnt start
+	var it = generator(); // 2. generates an instance of the iterator function -> it DOES NOT start
 
+	// Flow Control
 	function run(val){		
-		var result = it.next(val); 	// iterator result
-		if(result.done){ return; }		
+		var result = it.next(val); 	// 4. START generator function (Once) / RESUME yielded instruction
+		if(result.done){ return; }	// 6. Control return object of the request function (is an ES6 Promise)
 		var promise = result.value;
 		// promise finished
-		if(promise.then){
+		if(promise.then){			// 7. Check if it is a promise object or a simple primitive data type
 			promise.then(function(val){
-				run(val);
+				run(val);			// 8. Recursion -> call again run() to RESUME yielded instruction
 			});		
 		}
 		else{
 			run(result.value);
 		}	
 	}
+
+	// 3. auto start method -> called ONCE on the generation of the iterator function
 	run();	
 }
 
-// No Blocking
-// Call the makeRequests function and send a generator as parameter
+
+// 1. Call the Flow Control Function with a generator as parameter
 async(function *(){
-	var result = yield request('www.google.com'); // PAUSE EXECUTION of this generator function and WAIT (doesnt block the workflow)
+	var result = yield request('www.google.com'); // 5.then PAUSE EXECUTION here and WAIT (doesnt block the workflow)
 	console.log(result)
 
-	result = yield request('www.yahoo.com');
+	result = yield request('www.yahoo.com'); // 9. Call request(), then PAUSE EXECUTION here and WAIT (doesnt block the workflow)
 	console.log(result)
 
 	result = yield request('www.1.com');
