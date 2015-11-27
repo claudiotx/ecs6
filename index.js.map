@@ -1,1 +1,0 @@
-{"version":3,"sources":["src/index.js"],"names":[],"mappings":";;AAAA,IAAG,IAAI,EAAC;AACP,KAAI,EAAC,GAAG,GAAG,CAAC;AACZ,QAAO,CAAC,IAAI,CAAC,EAAC,CAAC,CAAC;CAChB;AACD,OAAO,CAAC,GAAG,CAAC,CAAC,CAAC,CAAC","file":"index.js","sourcesContent":["if(true){\n\tlet a = \"b\";\n\tconsole.info(a);\n}\nconsole.log(a);"]}
